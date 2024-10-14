@@ -13,6 +13,8 @@ public class MortgageCalculator {
 
     public static void main(String[] args) {
 
+        // dupa
+
         // To jest rodzaj mapy, który w tym przypadku trzyma klucze posortowane rosnąco.
         // Wiem, że nie tłumaczyłem go wcześniej. Spokojnie, jeszcze będzie ;)
         Map<Integer, BigDecimal> overpaymentSchema = new TreeMap<>();
