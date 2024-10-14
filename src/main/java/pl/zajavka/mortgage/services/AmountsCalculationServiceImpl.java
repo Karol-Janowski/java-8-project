@@ -5,6 +5,8 @@ import pl.zajavka.mortgage.model.Overpayment;
 import pl.zajavka.mortgage.model.Rate;
 import pl.zajavka.mortgage.model.RateAmounts;
 
+import java.util.Objects;
+
 public class AmountsCalculationServiceImpl implements AmountsCalculationService {
 
     private final ConstantAmountsCalculationService constantAmountsCalculationService;
