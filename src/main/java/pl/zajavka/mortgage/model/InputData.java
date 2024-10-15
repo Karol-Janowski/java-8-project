@@ -9,32 +9,19 @@ public class InputData {
 
     private static final BigDecimal PERCENT = new BigDecimal("100");
 
-    private LocalDate repaymentStartDate = LocalDate.of(2020, 12, 10);
-
-    private BigDecimal wiborPercent = BigDecimal.valueOf(1.70);
-
-    private BigDecimal amount = BigDecimal.valueOf(301953.46);
-    private BigDecimal monthsDuration = BigDecimal.valueOf(180);
-
-    private MortgageType rateType = MortgageType.CONSTANT;
-
-    private BigDecimal marginPercent = BigDecimal.valueOf(1.6);
-
-    private BigDecimal overpaymentProvisionPercent = BigDecimal.valueOf(3);
-    private BigDecimal overpaymentProvisionMonths = BigDecimal.valueOf(36);
-
-    private BigDecimal overpaymentStartMonth = BigDecimal.valueOf(1);
-    private Map<Integer, BigDecimal> overpaymentSchema = Map.of(
-        2, BigDecimal.valueOf(10000),
-        3, BigDecimal.valueOf(10000),
-        5, BigDecimal.valueOf(10000),
-        6, BigDecimal.valueOf(10000),
-        7, BigDecimal.valueOf(10000)
-    );
-    private String overpaymentReduceWay = Overpayment.REDUCE_PERIOD;
-
-    private boolean mortgagePrintPayoffsSchedule = true;
-    private Integer mortgageRateNumberToPrint = 1;
+    private LocalDate repaymentStartDate;
+    private BigDecimal wiborPercent;
+    private BigDecimal amount;
+    private BigDecimal monthsDuration;
+    private MortgageType rateType;
+    private BigDecimal marginPercent;
+    private BigDecimal overpaymentProvisionPercent;
+    private BigDecimal overpaymentProvisionMonths;
+    private BigDecimal overpaymentStartMonth;
+    private Map<Integer, BigDecimal> overpaymentSchema;
+    private String overpaymentReduceWay;
+    private boolean mortgagePrintPayoffsSchedule;
+    private Integer mortgageRateNumberToPrint;
 
     public InputData withRepaymentStartDate(LocalDate repaymentStartDate) {
         this.repaymentStartDate = repaymentStartDate;
