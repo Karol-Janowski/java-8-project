@@ -14,6 +14,8 @@ public class MortgageCalculator {
 
     public static void main(String[] args) {
 
+
+
         Map<Integer, BigDecimal> overpaymentSchema = new TreeMap<>();
         overpaymentSchema.put(5, BigDecimal.valueOf(12000));
         overpaymentSchema.put(19, BigDecimal.valueOf(10000));
