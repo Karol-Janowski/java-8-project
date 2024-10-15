@@ -28,24 +28,6 @@ public class MortgageCalculator {
             .withType(MortgageType.DECREASING)
             .withOverpaymentSchema(overpaymentSchema);
 
-        PrintingService printingService = new PrintingServiceImpl();
-        RateCalculationService rateCalculationService = new RateCalculationServiceImpl(
-            new TimePointCalculationServiceImpl(),
-            new OverpaymentCalculationServiceImpl(),
-            new AmountsCalculationServiceImpl(
-                new ConstantAmountsCalculationServiceImpl(),
-                new DecreasingAmountsCalculationServiceImpl()
-            ),
-            new ResidualCalculationServiceImpl(),
-            new ReferenceCalculationServiceImpl()
-        );
-
-        MortgageCalculationService mortgageCalculationService = new MortgageCalculationServiceImpl(
-            rateCalculationService,
-            printingService,
-            SummaryServiceFactory.create()
-        );
-
         CalculatorCreator.getInstance().calculate(defaultInputData);
     }
 
@@ -73,6 +55,7 @@ public class MortgageCalculator {
                         new PrintingServiceImpl(),
                         SummaryServiceFactory.create()
                 );
+
             }
             return instance;
         }
