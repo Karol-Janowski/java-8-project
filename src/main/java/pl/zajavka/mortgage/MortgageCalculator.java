@@ -5,6 +5,7 @@ import pl.zajavka.mortgage.model.MortgageType;
 import pl.zajavka.mortgage.model.Overpayment;
 import pl.zajavka.mortgage.services.*;
 
+import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.Map;
 import java.util.Objects;
@@ -15,22 +16,31 @@ public class MortgageCalculator {
     public static void main(String[] args) {
 
 
+        InputData inputData;
+        try {
+            inputData = new InputDataService().read();
+        } catch (Exception e) {
+            System.err.println("Error loading input data, interrupting. Error: " + e.getMessage());
+            return;
+        }
 
-        Map<Integer, BigDecimal> overpaymentSchema = new TreeMap<>();
-        overpaymentSchema.put(5, BigDecimal.valueOf(12000));
-        overpaymentSchema.put(19, BigDecimal.valueOf(10000));
-        overpaymentSchema.put(28, BigDecimal.valueOf(11000));
-        overpaymentSchema.put(64, BigDecimal.valueOf(16000));
-        overpaymentSchema.put(78, BigDecimal.valueOf(18000));
+        System.out.println("TEST");
 
-        InputData defaultInputData = new InputData()
-            .withAmount(new BigDecimal("296192.11"))
-            .withMonthsDuration(BigDecimal.valueOf(360))
-            .withOverpaymentReduceWay(Overpayment.REDUCE_PERIOD)
-            .withType(MortgageType.DECREASING)
-            .withOverpaymentSchema(overpaymentSchema);
-
-        CalculatorCreator.getInstance().calculate(defaultInputData);
+//        Map<Integer, BigDecimal> overpaymentSchema = new TreeMap<>();
+//        overpaymentSchema.put(5, BigDecimal.valueOf(12000));
+//        overpaymentSchema.put(19, BigDecimal.valueOf(10000));
+//        overpaymentSchema.put(28, BigDecimal.valueOf(11000));
+//        overpaymentSchema.put(64, BigDecimal.valueOf(16000));
+//        overpaymentSchema.put(78, BigDecimal.valueOf(18000));
+//
+//        InputData defaultInputData = new InputData()
+//            .withAmount(new BigDecimal("296192.11"))
+//            .withMonthsDuration(BigDecimal.valueOf(360))
+//            .withOverpaymentReduceWay(Overpayment.REDUCE_PERIOD)
+//            .withType(MortgageType.DECREASING)
+//            .withOverpaymentSchema(overpaymentSchema);
+//
+//        CalculatorCreator.getInstance().calculate(defaultInputData);
     }
 
     static class CalculatorCreator {

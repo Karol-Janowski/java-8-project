@@ -71,7 +71,7 @@ public class InputDataService {
                 ));
     }
 
-    private static void validate(final Map<String, List<String>> content) {
+    private void validate(final Map<String, List<String>> content) {
         if (content.values().stream().anyMatch(values -> values.size() != 1)) {
             throw new IllegalArgumentException("Configuration mismatch");
         }
