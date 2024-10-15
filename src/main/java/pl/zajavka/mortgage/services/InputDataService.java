@@ -12,7 +12,9 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.TreeMap;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class InputDataService {
 
@@ -58,7 +60,15 @@ public class InputDataService {
 
     }
 
-    private Map<Integer, BigDecimal> calculateSchema(String s) {
+    private Map<Integer, BigDecimal> calculateSchema(String schema) {
+        return Stream.of(schema.split(","))
+                .map(entry -> Map.entry(entry.split(";")[0], entry.split(":")[1]))
+                .collect(Collectors.toMap(
+                        entry -> Integer.parseInt(entry.getKey()),
+                        entry -> new BigDecimal(entry.getValue()),
+                        (v1, v2) -> v2,
+                        TreeMap::new
+                ));
     }
 
     private static void validate(final Map<String, List<String>> content) {
