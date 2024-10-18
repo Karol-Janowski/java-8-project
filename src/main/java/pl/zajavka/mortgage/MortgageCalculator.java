@@ -16,12 +16,10 @@ public class MortgageCalculator {
     public static void main(String[] args) {
 
 
-        InputData inputData;
         try {
-            inputData = new InputDataService().read();
-        } catch (Exception e) {
-            System.err.println("Error loading input data, interrupting. Error: " + e.getMessage());
-            return;
+            InputData inputData = new InputDataService().read();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
 
         System.out.println("TEST");

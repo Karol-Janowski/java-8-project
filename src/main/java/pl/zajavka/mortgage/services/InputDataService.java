@@ -30,7 +30,7 @@ public class InputDataService {
         var inputData = content.entrySet().stream()
                 .collect(Collectors.toMap(Map.Entry::getKey, entry -> entry.getValue().get(0).split(";")[1]));
 
-        return  new InputData()
+        return new InputData()
                 .withRepaymentStartDate(
                         Optional.ofNullable(inputData.get("repaymentStartDate")).map(LocalDate::parse).orElseThrow())
                 .withWiborPercent(
@@ -44,25 +44,24 @@ public class InputDataService {
                 .withMarginPercent(
                         Optional.ofNullable(inputData.get("margin")).map(BigDecimal::new).orElseThrow())
                 .withOverpaymentProvisionPercent(
-                        Optional.ofNullable("overpaymentProvision").map(BigDecimal::new).orElseThrow())
+                        Optional.ofNullable(inputData.get("overpaymentProvision")).map(BigDecimal::new).orElseThrow())
                 .withOverpaymentProvisionMonths(
-                        Optional.ofNullable("overpaymentProvisionMonths").map(BigDecimal::new).orElseThrow())
+                        Optional.ofNullable(inputData.get("overpaymentProvisionMonths")).map(BigDecimal::new).orElseThrow())
                 .withOverpaymentStartMonth(
-                        Optional.ofNullable("overpaymentStartMonth").map(BigDecimal::new).orElseThrow())
+                        Optional.ofNullable(inputData.get("overpaymentStartMonth")).map(BigDecimal::new).orElseThrow())
                 .withOverpaymentSchema(
-                        Optional.ofNullable("overpaymentSchema").map(this::calculateSchema).orElseThrow())
+                        Optional.ofNullable(inputData.get("overpaymentSchema")).map(this::calculateSchema).orElseThrow())
                 .withOverpaymentReduceWay(
                         Optional.ofNullable(inputData.get("overpaymentReduceWay")).orElseThrow())
                 .withMortgagePrintPayoffsSchedule(
-                        Optional.ofNullable(inputData.get("mortgagePrintPayoffSchedule")).map(Boolean::parseBoolean).orElseThrow())
+                        Optional.ofNullable(inputData.get("mortgagePrintPayoffsSchedule")).map(Boolean::parseBoolean).orElseThrow())
                 .withMortgageRateNumberToPrint(
-                        Optional.ofNullable(inputData.get("MortgageRateNumberToPrint")).map(Integer::parseInt).orElseThrow());
-
+                        Optional.ofNullable(inputData.get("mortgageRateNumberToPrint")).map(Integer::parseInt).orElseThrow());
     }
 
     private Map<Integer, BigDecimal> calculateSchema(String schema) {
         return Stream.of(schema.split(","))
-                .map(entry -> Map.entry(entry.split(";")[0], entry.split(":")[1]))
+                .map(entry -> Map.entry(entry.split(":")[0], entry.split(":")[1]))
                 .collect(Collectors.toMap(
                         entry -> Integer.parseInt(entry.getKey()),
                         entry -> new BigDecimal(entry.getValue()),
