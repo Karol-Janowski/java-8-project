@@ -18,9 +18,7 @@ public class PrintingServiceImpl implements PrintingService {
     @SuppressWarnings("SameParameterValue")
     private static StringBuilder createSeparator(char sign, int length) {
         StringBuilder sep = new StringBuilder();
-        for (int i = 0; i < length; i++) {
-            sep.append(sign);
-        }
+        sep.append(String.valueOf(sign).repeat(Math.max(0, length)));
         return sep;
     }
 
